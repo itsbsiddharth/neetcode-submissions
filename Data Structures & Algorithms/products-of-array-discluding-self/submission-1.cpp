@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+       vector<int> ans(nums.size());
+
+        int prefix=1;
+        for(int i=0;i<nums.size();i++){
+            ans[i]= prefix;
+            prefix *=nums[i];
+        }
+        int postfix=1;
+        for(int i=nums.size()-1;i>=0;i--){
+            ans[i] *=postfix;
+            postfix *= nums[i];
+        }
+
+        return ans;
+    }
+};
+
+// use prefix array and postfix array to fill out output
+// even better calculate prefix and add to output without storing 
+// and calculate postfix and * with the prefix to get the answer without o(n)space
